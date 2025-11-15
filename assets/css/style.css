@@ -106,7 +106,7 @@ body{
 .muted{color:var(--muted)}
 .form-row{display:block;margin-bottom:12px}
 .form-row span{display:block;margin-bottom:6px;font-size:0.9rem}
-input[type="email"],input[type="password"]{
+input[type="email"],input[type="password"],input[type="text"]{
   width:100%;padding:12px;border-radius:10px;border:1px solid rgba(10,20,40,0.06);
   background:rgba(255,255,255,0.85);
   outline: none;
