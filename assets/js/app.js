@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
   document.getElementById('open-profile').addEventListener('click', (e) => {
     e.preventDefault();
-    alert('Profile modal would open (demo). Implement full profile UI and backend.');
+    const u = Auth.getUser();
+    alert(`Profile (demo)\n\nName: ${u?.name || 'Unknown'}\nEmail: ${u?.email || 'Unknown'}\n\nThis data is stored locally in your browser for the demo.`);
   });
 });
