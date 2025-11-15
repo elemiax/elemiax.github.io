@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Sign in — Elemiax</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="login-page">
+  <main class="container login-grid">
+    <section class="login-card card">
+      <div class="brand-large">Elemiax</div>
+      <h2>Sign in</h2>
+      <p class="muted">Demo account: demo@elemiax.local / demo123 — replace with real backend</p>
+
+      <form id="login-form" autocomplete="on">
+        <label class="form-row">
+          <span>Email</span>
+          <input type="email" id="email" required placeholder="you@example.com" />
+        </label>
+
+        <label class="form-row">
+          <span>Password</span>
+          <input type="password" id="password" required placeholder="Password" />
+        </label>
+
+        <label class="form-row small">
+          <input type="checkbox" id="remember" /> Remember me
+        </label>
+
+        <div class="form-actions">
+          <button class="btn" type="submit">Sign in</button>
+          <a href="#" class="btn btn-ghost" id="use-guest">Use guest</a>
+        </div>
+
+        <div id="login-error" class="error" aria-live="polite" style="display:none"></div>
+      </form>
+
+      <small class="muted">This is a demo login; do not use for production.</small>
+    </section>
+
+    <aside class="card login-info">
+      <h4>Frutiger Aero</h4>
+      <p class="muted">Soft gradients, rounded cards, and clean geometric type — a modern, calm UI inspired by the Frutiger aesthetic.</p>
+    </aside>
+  </main>
+
+  <script src="assets/js/auth.js"></script>
+  <script>
+    // Small client-side handling for demo login
+    const form = document.getElementById('login-form');
+    const errEl = document.getElementById('login-error');
+    document.getElementById('use-guest').addEventListener('click', (e) => {
+      e.preventDefault();
+      Auth.login('demo@elemiax.local','demo123', true)
+        .then(() => location.replace(localStorage.getItem('intended') || 'index.html'))
+        .catch(showErr);
+    });
+
+    form.addEventListener('submit', (ev) => {
+      ev.preventDefault();
+      const email = document.getElementById('email').value.trim();
+      const pass = document.getElementById('password').value;
+      const remember = document.getElementById('remember').checked;
+      Auth.login(email, pass, remember)
+        .then(() => location.replace(localStorage.getItem('intended') || 'index.html'))
+        .catch(showErr);
+    });
+
+    function showErr(e){
+      errEl.style.display = 'block';
+      errEl.textContent = typeof e === 'string' ? e : 'Invalid login';
+    }
+  </script>
+</body>
+</html>
