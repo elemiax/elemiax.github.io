@@ -1,0 +1,130 @@
+/* Frutiger Aero style: soft gradients, glass cards, rounded geometry */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Poppins:wght@400;600&display=swap');
+
+:root{
+  --bg-1: #F6FAFF;
+  --bg-2: #EAF2FF;
+  --card: rgba(255,255,255,0.75);
+  --glass: rgba(255,255,255,0.45);
+  --accent: #2B6FFF;
+  --accent-2: #8AE1FF;
+  --muted: #6b7280;
+  --radius: 14px;
+  --shadow-soft: 0 10px 30px rgba(34,41,47,0.06);
+  font-synthesis: none;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background: linear-gradient(160deg,var(--bg-1),var(--bg-2));
+  color:#0b1220;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  line-height:1.45;
+  padding-bottom:80px;
+}
+
+/* layout */
+.container{
+  max-width:1100px;
+  margin:0 auto;
+  padding:28px;
+}
+
+/* header */
+.site-header{
+  position:sticky;
+  top:0;
+  z-index:20;
+  backdrop-filter: blur(6px);
+  background: linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.35));
+  border-bottom:1px solid rgba(30,40,60,0.03);
+}
+.header-inner{display:flex;align-items:center;justify-content:space-between}
+.brand{font-weight:700;font-size:1.05rem;letter-spacing:0.2px}
+.brand-large{font-weight:700;font-size:1.5rem;margin-bottom:8px}
+
+/* grid */
+.main-grid{
+  display:grid;
+  grid-template-columns: 1fr 340px;
+  gap:24px;
+  margin-top:34px;
+}
+
+/* cards */
+.card{
+  background: linear-gradient(180deg, rgba(255,255,255,0.85), rgba(250,250,252,0.8));
+  border-radius: var(--radius);
+  padding:22px;
+  box-shadow: var(--shadow-soft);
+  border:1px solid rgba(12,20,40,0.04);
+}
+.welcome-card h1{margin-top:0}
+.welcome-card .lead{color:var(--muted);margin-top:6px}
+
+/* info panel */
+.info-panel{
+  margin-top:18px;
+  padding:12px;
+  background: linear-gradient(90deg, rgba(255,255,255,0.65), rgba(250,250,255,0.6));
+  border-radius:10px;
+}
+
+/* buttons & inputs */
+.btn{
+  display:inline-block;
+  background: linear-gradient(180deg,var(--accent), #1f56e6);
+  color:white;
+  padding:10px 14px;
+  border-radius:10px;
+  text-decoration:none;
+  border:none;
+  cursor:pointer;
+  font-weight:600;
+}
+.btn-soft{
+  background: linear-gradient(180deg, rgba(43,111,255,0.07), rgba(43,111,255,0.03));
+  color:var(--accent);
+  border:1px solid rgba(43,111,255,0.12);
+}
+.btn-ghost{
+  background:transparent;
+  color:var(--muted);
+  border:1px dashed rgba(10,20,40,0.04);
+  padding:8px 12px;
+}
+
+/* login layout */
+.login-page{display:flex;min-height:100vh;align-items:center;justify-content:center;background:linear-gradient(160deg,var(--bg-1),#EEF8FF)}
+.login-grid{display:grid;grid-template-columns:430px 1fr;gap:24px;align-items:start;padding:60px 24px}
+.login-card{padding:28px}
+.login-card h2{margin:6px 0 12px}
+.muted{color:var(--muted)}
+.form-row{display:block;margin-bottom:12px}
+.form-row span{display:block;margin-bottom:6px;font-size:0.9rem}
+input[type="email"],input[type="password"]{
+  width:100%;padding:12px;border-radius:10px;border:1px solid rgba(10,20,40,0.06);
+  background:rgba(255,255,255,0.85);
+  outline: none;
+}
+input[type="checkbox"]{transform:translateY(2px)}
+.form-actions{display:flex;gap:10px;align-items:center;margin-top:10px}
+.error{color:#b91c1c;padding:8px;margin-top:8px;border-radius:8px;background:#fff2f2}
+
+/* stats card */
+.stats-list{list-style:none;padding-left:0;margin:0}
+.stats-list li{padding:8px 0;border-bottom:1px dashed rgba(12,20,40,0.03);display:flex;justify-content:space-between}
+
+/* footer */
+.site-footer{position:fixed;left:0;right:0;bottom:0;background:transparent;padding:10px 0;text-align:center;color:var(--muted)}
+
+/* responsive */
+@media (max-width:900px){
+  .main-grid{grid-template-columns:1fr}
+  .login-grid{grid-template-columns:1fr; padding:40px 16px}
+  .site-header .container{padding:14px}
+}
