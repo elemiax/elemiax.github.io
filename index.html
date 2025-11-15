@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Elemiax — Home</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#EAF2FF">
+</head>
+<body>
+  <script src="assets/js/auth.js"></script>
+  <script>
+    // Ensure user is authenticated: redirect to login if not
+    if (!Auth.isLoggedIn()) {
+      // save intended destination and redirect
+      localStorage.setItem('intended', location.pathname + location.search);
+      location.replace('login.html');
+    }
+  </script>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">Elemiax</div>
+      <nav>
+        <a href="#" id="username-display" class="muted">—</a>
+        <button class="btn btn-ghost" id="logout-btn">Logout</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container main-grid">
+    <section class="card welcome-card">
+      <h1>Welcome to the Frutiger Aero experience</h1>
+      <p class="lead">This page is protected — you had to sign in to see it. Enjoy the soft gradients, rounded cards and light geometric layout.</p>
+
+      <div class="info-panel">
+        <h3>Your session</h3>
+        <p id="session-info">Loading...</p>
+      </div>
+
+      <div class="actions">
+        <a href="#" class="btn" id="open-profile">Open profile</a>
+        <a href="#" class="btn btn-soft" id="open-settings">Settings</a>
+      </div>
+    </section>
+
+    <aside class="card stats-card">
+      <h4>Quick Stats</h4>
+      <ul class="stats-list">
+        <li><strong>12</strong> Projects</li>
+        <li><strong>3</strong> Active Tasks</li>
+        <li><strong>5</strong> Notifications</li>
+      </ul>
+    </aside>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">© <span id="year"></span> Elemiax — Frutiger Aero demo</div>
+  </footer>
+
+  <script src="assets/js/app.js"></script>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
