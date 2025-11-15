@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Create account — Elemiax</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="login-page">
+  <main class="container login-grid">
+    <section class="login-card card">
+      <div class="brand-large">Elemiax</div>
+      <h2>Create account</h2>
+      <p class="muted">Register an account using an @elemiax.local email (stored in your browser only for this demo)</p>
+
+      <form id="register-form" autocomplete="on">
+        <label class="form-row">
+          <span>Full name</span>
+          <input type="text" id="name" required placeholder="Your name" />
+        </label>
+
+        <label class="form-row">
+          <span>Email</span>
+          <input type="email" id="reg-email" required placeholder="you@elemiax.local" />
+        </label>
+
+        <label class="form-row">
+          <span>Password</span>
+          <input type="password" id="reg-password" required placeholder="Password" />
+        </label>
+
+        <label class="form-row">
+          <span>Confirm password</span>
+          <input type="password" id="reg-confirm" required placeholder="Confirm password" />
+        </label>
+
+        <div class="form-actions">
+          <button class="btn" type="submit">Create account</button>
+          <a href="login.html" class="btn btn-ghost">Back to sign in</a>
+        </div>
+
+        <div id="reg-error" class="error" aria-live="polite" style="display:none"></div>
+      </form>
+
+      <small class="muted">Accounts are saved only in your browser (localStorage) for demo purposes.</small>
+    </section>
+
+    <aside class="card login-info">
+      <h4>Local registration</h4>
+      <p class="muted">This flow stores account details in localStorage so you can try the protected index. Replace with a secure backend for production.</p>
+    </aside>
+  </main>
+
+  <script src="assets/js/auth.js"></script>
+  <script>
+    const form = document.getElementById('register-form');
+    const errEl = document.getElementById('reg-error');
+
+    form.addEventListener('submit', (ev) => {
+      ev.preventDefault();
+      errEl.style.display = 'none';
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('reg-email').value.trim();
+      const pass = document.getElementById('reg-password').value;
+      const conf = document.getElementById('reg-confirm').value;
+
+      if (pass !== conf) {
+        return showErr('Passwords do not match');
+      }
+      Auth.register(email, name, pass)
+        .then(() => {
+          // auto-login after register
+          return Auth.login(email, pass, true);
+        })
+        .then(() => location.replace(localStorage.getItem('intended') || 'index.html'))
+        .catch(showErr);
+    });
+
+    function showErr(e){
+      errEl.style.display = 'block';
+      errEl.textContent = typeof e === 'string' ? e : 'Registration failed';
+    }
+  </script>
+</body>
+</html>
